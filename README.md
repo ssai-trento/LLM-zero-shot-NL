@@ -16,7 +16,7 @@ Figure 1. Graphical representation of the proposed framework.
 - **Data Contamination**: A framework to test data contamination was proposed, confirming that LLMs' performance is not artificially inflated by prior exposure to the datasets.
 - **Explainability**: LLMs can provide text-based explanations for their predictions, enhancing their transparency and explanability.
 
-![Architecture](images/LLMs_vs_Traditional_Models_Zero_Shot_Modern_Horizontal.pdf)
+![Architecture](images/LLMs_vs_Traditional_Models_Zero_Shot_Modern_Horizontal.png)
 Figure 2. ACC@5 Performance Comparison: LLMs vs. Traditional Models (Zero-Shot). 
 
 
