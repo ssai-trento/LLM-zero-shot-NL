@@ -2,40 +2,44 @@
 
 ## Abstract
 
-Predicting the locations an individual will visit in the future is crucial for solving many societal issues like disease diffusion and reduction of pollution among many others. The models designed to tackle next-location prediction, however, require a significant amount of individual-level information to be trained effectively. Such data may be scarce or even unavailable in some geographic regions or peculiar scenarios (e.g., cold-start in recommendation systems). Moreover, the design of a next-location predictor able to generalize or geographically transfer knowledge is still an open research challenge. Recent advances in natural language processing have led to a rapid diffusion of Large Language Models (LLMs) which have shown good generalization and reasoning capabilities. These insights, coupled with the recent findings that LLMs are rich in geographical knowledge, allowed us to believe that these models can act as zero-shot next-location predictors. This paper evaluates the capabilities of many popular LLMs in this role, specifically Llama2, Llama2 Chat, GPT-3.5 and Mistral 7B. After designing a proper prompt, we tested the models on three real-world mobility datasets. The results show that LLMs can obtain accuracies up to 32.4\%, a significant relative improvement of over 600\% when compared to sophisticated deep leaning models specifically designed for human mobility. Moreover, we show that other LLMs are unable to perform the task properly. To prevent positively biased results, we also propose a framework inspired by other studies to test data contamination (e.g., public datasets already observed during training). Finally, we explored the possibility of using LLMs as text-based explainers for next-location prediction showing that, regardless of the model size, LLMs can effectively provide an explanation for their decision. Notably, 7B models provide more generic, but still reliable, explanations compared to larger counterparts. The code is available as a supplementary file and will be available on GitHub after the review process.
+Predicting the locations an individual will visit in the future is crucial for solving many societal issues like disease diffusion and reduction of pollution, among many others. The models designed to tackle next-location prediction, however, require a significant amount of individual-level information to be trained effectively. Such data may be scarce or even unavailable in some geographic regions or peculiar scenarios (e.g., cold-start in recommendation systems). Moreover, designing a next-location predictor able to generalize or geographically transfer knowledge is still an open research challenge. Recent advances in natural language processing have led to a rapid diffusion of Large Language Models (LLMs), which have shown good generalization and reasoning capabilities. These insights, coupled with the recent findings that LLMs are rich in geographical knowledge, allowed us to believe that these models can act as zero-shot next-location predictors. This paper evaluates the capabilities of more than 15any popular LLMs in this role, specifically Llama 2, Llama 3, GPT-3.5, GPT-4, GPT-4o and Mistral 7B. WAfter designing a proper prompt, we tested the models on three real-world mobility datasets. The results show that LLMs can obtain accuracies up to 36.2%, a significant relative improvement of almost 640% when compared to sophisticated deep leaning models specifically designed for human mobility. WMoreover, we show that other LLMs are unable to perform the task properly. To prevent positively biased results, we also propose a framework inspired by other studies to test for data contamination (e.g., public datasets already observed during training). Finally, we explored the possibility of using LLMs as text-based explainers for next-location prediction, showing that, regardless of the model size, LLMs can effectively explain the reasoning they carried out to make their decision. Notably, 7B models provide more generic, but still reliable, explanations compared to larger counterparts.
 
-![Architecture](images/Pipeline_LLM_NL.png)
-Figure 1. Graphical representation of the proposed framework.
+![Architecture](images/Fig0.png)
+Figure 1. Graphical representation of the proposed framework. In panel **(A)**, we graphically describe the problem of next-location prediction. Given a set of historical (green) and contextual (yellow) user visits, a next location predictor is a model that predicts the next place (red) they will visit. In panel **(B)**, an example of how we query an LLM and an example of response.
 
 
 ## Key Findings
 
-- **Zero-Shot Prediction**: LLMs can act as effective zero-shot next-location predictors, achieving up to 32.4% accuracy, significantly outperforming traditional deep learning models of over 600\%.
+- **Zero-Shot Prediction**: LLMs can act as effective zero-shot next-location predictors, achieving up to 32.4% accuracy, significantly outperforming traditional deep learning models of over 600%.
 - **Geographic Transferability**: LLMs demonstrate robust performance across different regions without additional training.
 - **In-Context Learning**: LLM performance can be influenced by the context provided, with zero-shot, one-shot, and few-shot prompting strategies yielding varying results.
 - **Data Contamination**: A framework to test data contamination was proposed, confirming that LLMs' performance is not artificially inflated by prior exposure to the datasets.
 - **Explainability**: LLMs can provide text-based explanations for their predictions, enhancing their transparency and explanability.
 
-![Architecture](images/LLMs_vs_Traditional_Models_Zero_Shot_Modern_Horizontal.png)
-Figure 2. ACC@5 Performance Comparison: LLMs vs. Traditional Models (Zero-Shot). 
+![Architecture](images/Fig1.png)
+Figure 2. ACC@5 values of LLMs with zero-shot (purple), one-shot (dark blue) and few-shot (light blue) prompts in New York.
 
 
-![Architecture](images/All_prompts_results.png)
-Figure 3. ACC@5 of selected LLMs prompted to perform zero-shot (left), one-shot (middle) and 3-shot (right) next location prediction. 
+![Architecture](images/Fig2.png)
+Figure 3. **Results in terms of relative improvements and drops** with respect to the scenario with C=6, H=15 for the city of New York when we modify the availability of contextual C (left) and historical H (right) information.
 
 ## Models Evaluated
-
-- **Llama2** (7B, 13B, 70B)
-- **Llama2 Chat** (7B, 13B, 70B)
+- **Llama 3.1** 8B
+- **Llama 3** (8B, 70B)
+- **Llama 3 Instruct** (8B, 70B)
+- **Llama 2** (7B, 13B, 70B)
+- **Llama  Chat** (7B, 13B, 70B)
+- **GPT-4**
+- **GPT-4o**
 - **GPT-3.5**
-- **Mistral 7B**
+- **Mistral** 7B
 
 ## Datasets
 
 Three real-world mobility datasets were used for evaluation:
 - **Foursquare NYC**
 - **Foursquare Tokyo**
-- **A private dataset composed GPS trajectories produced by cyclists in an Italian city**
+- **A private dataset composed GPS trajectories produced by cyclists in Ferrara**
 
 The public datasets utilized in this analysis can be accessed [here](https://www.kaggle.com/datasets/chetanism/foursquare-nyc-and-tokyo-checkin-dataset). Our data preprocessing methodology aligns with the approach outlined in the paper  [Context-aware multi-head self-attentional neural network model for next location prediction](https://arxiv.org/abs/2212.01953).
 
@@ -43,7 +47,7 @@ The public datasets utilized in this analysis can be accessed [here](https://www
 
 ### APIs
 
-To replicate our results, it's imperative to have accounts on both [Replicate](https://replicate.com/) and [OpenAI](https://openai.com/) with a valid billing method.
+To replicate our results, it's imperative to have accounts on [Replicate](https://replicate.com/), [OpenAI](https://openai.com/) and [MistraAI](https://docs.mistral.ai/api/) with a valid billing method.
 
 ### Running the scripts
 
