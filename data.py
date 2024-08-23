@@ -127,8 +127,7 @@ class Dataset:
                 historical_data = user_data.iloc[-(self.history_stays + self.context_stays):-self.context_stays][['hour', 'weekday', 'venue_id']].values
                 context_data = user_data.iloc[-self.context_stays:][['hour', 'weekday', 'venue_id']].values
                 ground_truth = context_data[-1][-1]
-                target_data = context_data[-1][:-1].tolist()
-                target_data.append('<next_place_id>')
+                target_data = ['<next_place_id>']
                 context_data = context_data[:-1]
 
                 user_data_dict = {
@@ -195,8 +194,7 @@ class Dataset:
                     context_data = self.data[(self.data['user_id'] == user_id) &
                                              (self.data['traj_id'] == trajectory_id)][['hour', 'weekday', 'venue_id']].values
                     ground_truth = context_data[-1][-1]
-                    target_data = context_data[-1][:-1].tolist()
-                    target_data.append('<next_place_id>')
+                    target_data = ['<next_place_id>']
                     context_data = context_data[:-1]
 
                     user_data_dict = {

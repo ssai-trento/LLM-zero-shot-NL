@@ -31,20 +31,25 @@ class LLM:
             'max_tokens': 1000,
         }
 
-        if self.model_name not in ['gpt35turbo','gpt4turbo', 'llama7b', 'llama13b', 'llama70b', 'llama7bchat', 'llama13bchat',
-                                   'llama70bchat', 'mistral7b']:
-            raise ValueError('Invalid model name! Please use one of the following: gpt35turbo, llama7b, llama13b, '
-                             'llama70b, llama7bchat, llama13bchat, llama70bchat', 'mistral7b')
+        if self.model_name not in ['gpt35turbo','gpt4', 'gpt4o', 'llama7b', 'llama13b', 'llama70b', 'llama7bchat', 'llama13bchat',
+                                   'llama70bchat', 'mistral7b', 'llama3_8b', 'llama3_70b', 'llama3_8binstruct', 'llama3_70binstruct']:
+            raise ValueError('Invalid model name! Please use one of the following: gpt35turbo,gpt4, gpt4o, llama7b, llama13b, llama70b, llama7bchat, '
+                             'llama13bchat, llama70bchat, mistral7b, llama3_8b, llama3_70b, llama3_8binstruct, llama3_70binstruct')
 
         self.mapper = {
             'gpt35turbo': 'gpt-3.5-turbo',
-            'gpt4turbo': 'gpt-4-1106-preview',
+            'gpt4': 'gpt-4-0613',
+            'gpt4o': 'gpt-4-0613',
             'llama7b': 'meta/llama-2-7b:77dde5d6c56598691b9008f7d123a18d98f40e4b4978f8a72215ebfc2553ddd8',
             'llama13b': 'meta/llama-2-13b:078d7a002387bd96d93b0302a4c03b3f15824b63104034bfa943c63a8f208c38',
             'llama70b': 'meta/llama-2-70b:a52e56fee2269a78c9279800ec88898cecb6c8f1df22a6483132bea266648f00',
-            'llama7bchat': 'meta/llama-2-7b-chat:52551facc68363358effaacb0a52b5351843e2d3bf14f58aff5f0b82d756078c',
+            'llama7bchat':'meta/llama-2-7b-chat:52551facc68363358effaacb0a52b5351843e2d3bf14f58aff5f0b82d756078c',
             'llama13bchat': 'meta/llama-2-13b-chat:f4e2de70d66816a838a89eeeb621910adffb0dd0baba3976c96980970978018d',
             'llama70bchat': 'meta/llama-2-70b-chat:02e509c789964a7ea8736978a43525956ef40397be9033abf9fd2badfe68c9e3',
+            'llama3_8b':  'meta/meta-llama-3-8b',
+            'llama3_70b' :'meta/meta-llama-3-70b',
+            'llama3_8binstruct': 'meta/meta-llama-3-8b-instruct',
+            'llama3_70binstruct': 'meta/meta-llama-3-70b-instruct',
             'mistral7b': '"mistralai/mistral-7b-v0.1"'
 
         }
