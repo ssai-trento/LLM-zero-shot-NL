@@ -70,4 +70,4 @@ The models can be run with the following command:
 Your MistralAI, OpenAI or Replicate APIs code should be placed in <code>llms.py</code> where highlighted
 This file initializes the dataset, selects the model and prompt type, and runs the prediction. You can adjust the parameters within the script as needed. For example, you can change the model or dataset by uncommenting the relevant lines in the script.
 
-Installing the environment takes less than a minute, and inferring the next location takes between 2 and 4 seconds, depending on the queried model. The code is tested on Ubuntu and Mac OS 14.4.1. As it heavily depends on APIs, we believe that using the code on other OS should not represent an issue. 
+Installing the environment takes less than a minute, and inferring the next location takes between 2 and 4 seconds, depending on the queried model. The code is tested on Ubuntu 22.04.4 and Mac OS 14.4.1. As it heavily depends on APIs, we believe that using the code on other OS should not represent an issue. 
